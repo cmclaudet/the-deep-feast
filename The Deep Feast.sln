@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Deep Feast", "The Deep Feast.csproj", "{DC6378B5-2897-4F05-9F7E-BD501B7BAFE5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC6378B5-2897-4F05-9F7E-BD501B7BAFE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC6378B5-2897-4F05-9F7E-BD501B7BAFE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC6378B5-2897-4F05-9F7E-BD501B7BAFE5}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{DC6378B5-2897-4F05-9F7E-BD501B7BAFE5}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{DC6378B5-2897-4F05-9F7E-BD501B7BAFE5}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{DC6378B5-2897-4F05-9F7E-BD501B7BAFE5}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal

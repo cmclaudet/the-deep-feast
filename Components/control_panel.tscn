@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2byd0f0uc1en"]
+
+[ext_resource type="Script" uid="uid://bdfnf766t5wtf" path="res://Components/ControlPanel.cs" id="1_q4x5l"]
+
+[node name="ControlPanel" type="ColorRect"]
+offset_left = -234.0
+offset_top = -81.0
+offset_right = -159.0
+offset_bottom = 15.0
+color = Color(0.45587373, 0.45587373, 0.45587373, 1)
+script = ExtResource("1_q4x5l")

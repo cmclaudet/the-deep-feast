@@ -33,6 +33,7 @@ offset_top = -1.0
 offset_right = -355.0
 offset_bottom = 141.92805
 scale = Vector2(21.145855, 0.6086979)
+color = Color(0.22845358, 0.21684732, 0.20887977, 1)
 
 [node name="WorldBoundsRight" type="StaticBody2D" parent="."]
 position = Vector2(286, -22)

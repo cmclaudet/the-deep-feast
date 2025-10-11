@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://j5ylltbkvldv"]
+[gd_scene load_steps=5 format=3 uid="uid://j5ylltbkvldv"]
 
 [ext_resource type="PackedScene" uid="uid://5wachrcb51g2" path="res://Components/player.tscn" id="1_pq8q7"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pq8q7"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vvh5c"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pyidc"]
 
@@ -21,30 +23,26 @@ position = Vector2(0, -100)
 [node name="Player" parent="." instance=ExtResource("1_pq8q7")]
 position = Vector2(-3, -25)
 
-[node name="WorldBounds" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds"]
-position = Vector2(0, 13)
-shape = SubResource("WorldBoundaryShape2D_pq8q7")
-
-[node name="ColorRect" type="ColorRect" parent="WorldBounds/CollisionShape2D"]
+[node name="Foreground" type="ColorRect" parent="."]
 offset_left = -395.0
-offset_top = -1.0
+offset_top = 12.0
 offset_right = -355.0
-offset_bottom = 141.92805
+offset_bottom = 154.92805
 scale = Vector2(21.145855, 0.6086979)
 color = Color(0.22845358, 0.21684732, 0.20887977, 1)
 
-[node name="WorldBoundsRight" type="StaticBody2D" parent="."]
-position = Vector2(286, -22)
+[node name="WorldBounds" type="StaticBody2D" parent="."]
+
+[node name="CollisionShapeFloor" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(0, 13)
+shape = SubResource("WorldBoundaryShape2D_pq8q7")
+
+[node name="CollisionShapeWallRight" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(286, -17)
 rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_vvh5c")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundsRight"]
-shape = SubResource("WorldBoundaryShape2D_pyidc")
-
-[node name="WorldBoundsLeft" type="StaticBody2D" parent="."]
+[node name="CollisionShapeWallLeft" type="CollisionShape2D" parent="WorldBounds"]
 position = Vector2(-287, 0)
 rotation = 1.5707964
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundsLeft"]
 shape = SubResource("WorldBoundaryShape2D_pyidc")

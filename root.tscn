@@ -181,6 +181,21 @@ position = Vector2(38.9203, 89.50001)
 scale = Vector2(0.1594049, 0.21875)
 texture = ExtResource("9_tw3kd")
 
+[node name="bubbles" type="CPUParticles2D" parent="FishTanks/FishTank2"]
+position = Vector2(0, 129)
+scale = Vector2(0.1594049, 0.21874999)
+texture = ExtResource("9_gd4vy")
+lifetime = 1.5999999999999999
+speed_scale = 0.5
+explosiveness = 0.2
+randomness = 0.7
+spread = 35.0
+gravity = Vector2(0, -80)
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+scale_amount_min = 0.3
+scale_amount_max = 0.5
+
 [node name="FishTank3" parent="FishTanks" instance=ExtResource("8_bf3um")]
 position = Vector2(82, -237)
 
@@ -201,6 +216,19 @@ FishName = "??"
 position = Vector2(44.000008, 53.000008)
 scale = Vector2(0.16511501, 0.17962961)
 texture = ExtResource("11_qw60f")
+
+[node name="bubbles" type="CPUParticles2D" parent="FishTanks/BeastTank"]
+position = Vector2(78, 131)
+scale = Vector2(0.1594049, 0.21874999)
+texture = ExtResource("9_gd4vy")
+lifetime = 1.5999999999999999
+speed_scale = 0.5
+explosiveness = 0.2
+randomness = 0.7
+spread = 35.0
+gravity = Vector2(0, -80)
+scale_amount_min = 0.6
+scale_amount_max = 0.6
 
 [node name="CanvasLayer" parent="." instance=ExtResource("8_huihk")]
 

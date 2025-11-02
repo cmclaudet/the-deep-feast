@@ -1,12 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://j5ylltbkvldv"]
+[gd_scene load_steps=11 format=3 uid="uid://j5ylltbkvldv"]
 
 [ext_resource type="PackedScene" uid="uid://5wachrcb51g2" path="res://Components/player.tscn" id="1_pq8q7"]
-[ext_resource type="Script" uid="uid://c3i7c37d51jfx" path="res://GameManager.cs" id="1_vyht1"]
 [ext_resource type="PackedScene" uid="uid://d2byd0f0uc1en" path="res://Components/control_panel.tscn" id="2_pyidc"]
-[ext_resource type="PackedScene" uid="uid://xp2n2wqiwus6" path="res://Components/fish.tscn" id="3_28aoi"]
 [ext_resource type="Texture2D" uid="uid://dt6dm7pqsmlu6" path="res://Art/TMP/fishfood.png" id="5_jnlp7"]
-[ext_resource type="Script" uid="uid://cu8pgvmnqt2r5" path="res://FoodPile.cs" id="5_l8v81"]
+[ext_resource type="Script" uid="uid://cu8pgvmnqt2r5" path="res://Components/FoodPile.cs" id="5_l8v81"]
 [ext_resource type="PackedScene" uid="uid://poumb1rm7n8k" path="res://Components/prompt.tscn" id="6_l8v81"]
+[ext_resource type="PackedScene" uid="uid://dorax4r82p8aj" path="res://Components/fish_tank.tscn" id="8_bf3um"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pq8q7"]
 
@@ -16,10 +15,8 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jnlp7"]
 
-[node name="Root" type="Node2D" node_paths=PackedStringArray("prompt", "player")]
-script = ExtResource("1_vyht1")
-prompt = NodePath("Prompt")
-player = NodePath("Player")
+[node name="Root" type="Node2D"]
+metadata/_edit_group_ = true
 
 [node name="Background" type="ColorRect" parent="."]
 offset_left = -1394.0
@@ -60,27 +57,6 @@ position = Vector2(-287, 0)
 rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_pyidc")
 
-[node name="FishContainer" type="Node" parent="."]
-
-[node name="Fish" parent="FishContainer" instance=ExtResource("3_28aoi")]
-position = Vector2(-48, -137)
-
-[node name="ParticlesFishFood" type="CPUParticles2D" parent="."]
-visible = false
-position = Vector2(-133, -264)
-amount = 13
-texture = ExtResource("5_jnlp7")
-lifetime = 13.22
-direction = Vector2(1, 20)
-spread = 39.8
-gravity = Vector2(0, 0)
-initial_velocity_min = 9.73
-initial_velocity_max = 20.6
-angular_velocity_min = -5.0
-angular_velocity_max = 8.0
-linear_accel_min = -2.0
-linear_accel_max = -1.0
-
 [node name="FoodPile" type="Node2D" parent="."]
 position = Vector2(307, -20)
 script = ExtResource("5_l8v81")
@@ -112,3 +88,26 @@ shape = SubResource("RectangleShape2D_jnlp7")
 
 [node name="Prompt" parent="." instance=ExtResource("6_l8v81")]
 position = Vector2(302, -32)
+
+[node name="ChooseFishDialogue" type="Node2D" parent="."]
+
+[node name="FishTanks" type="Node" parent="."]
+
+[node name="FishTank" parent="FishTanks" instance=ExtResource("8_bf3um")]
+position = Vector2(-148, -237)
+
+[node name="FishTank2" parent="FishTanks" instance=ExtResource("8_bf3um")]
+position = Vector2(-5, -237)
+
+[node name="Fish" parent="FishTanks/FishTank2" index="2"]
+FishName = "Lily"
+
+[node name="FishTank3" parent="FishTanks" instance=ExtResource("8_bf3um")]
+position = Vector2(138, -237)
+
+[node name="Fish" parent="FishTanks/FishTank3" index="2"]
+FishName = "Martha"
+
+[editable path="FishTanks/FishTank"]
+[editable path="FishTanks/FishTank2"]
+[editable path="FishTanks/FishTank3"]

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using DialogueManagerRuntime;
 
 public partial class ControlPanel : ColorRect
 {
@@ -11,6 +12,7 @@ public partial class ControlPanel : ColorRect
 
 	public override void _Ready()
 	{
+		GameManagerScript.Instance.SetControlPanel(this);
 		foodSprite.Visible = false;
 		area2D = GetNode<Area2D>("Area2D");
 		area2D.BodyEntered += OnBodyEntered;
@@ -24,18 +26,27 @@ public partial class ControlPanel : ColorRect
 		{
 			if (canFeed)
 			{
-				GD.Print("Show dialogue to choose fish to feed");
+				var dialogue = GD.Load<Resource>("res://Dialogue/ChooseFish.dialogue");
+				DialogueManager.ShowExampleDialogueBalloon(dialogue, "feedFish");
 			}
 			else if (canPlaceFood)
 			{
 				GD.Print("Placing food");
-				GameManager.Instance.Player.DisableCarriedObjectSprite();
+				GameManagerScript.Instance.Player.DisableCarriedObjectSprite();
 				SetCannotPlaceFood();
 				foodSprite.Visible = true;
 				containsFood = true;
 				SetCanFeed();
 			}
 		}
+	}
+
+	public void OnFishFeed()
+	{
+		SetCannotFeed();
+		SetCannotPlaceFood();
+		foodSprite.Visible = false;
+		containsFood = false;
 	}
 
 	private void OnBodyExited(Node2D body)
@@ -51,12 +62,12 @@ public partial class ControlPanel : ColorRect
 	{
 		if (body is Player)
 		{
-			var instancePrompt = GameManager.Instance.Prompt;
-			if (containsFood)
+			var instancePrompt = GameManagerScript.Instance.Prompt;
+			if (containsFood && !GameManagerScript.Instance.Player.IsCarryingObject)
 			{
 				SetCanFeed();
 			}
-			else if (GameManager.Instance.Player.IsCarryingObject)
+			else if (GameManagerScript.Instance.Player.IsCarryingObject)
 			{
 				instancePrompt.SetText("PLACE FOOD (SPACE)");
 				instancePrompt.SetOver(area2D, -50);
@@ -68,7 +79,7 @@ public partial class ControlPanel : ColorRect
 
 	private void SetCanFeed()
 	{
-		var instancePrompt = GameManager.Instance.Prompt;
+		var instancePrompt = GameManagerScript.Instance.Prompt;
 		instancePrompt.SetText("FEED (SPACE)");
 		instancePrompt.SetOver(area2D, -50);
 		instancePrompt.ToggleDisplay(true);
@@ -77,13 +88,13 @@ public partial class ControlPanel : ColorRect
 
 	private void SetCannotPlaceFood()
 	{
-		GameManager.Instance.Prompt.ToggleDisplay(false);
+		GameManagerScript.Instance.Prompt.ToggleDisplay(false);
 		canPlaceFood = false;
 	}
 	
 	private void SetCannotFeed()
 	{
-		GameManager.Instance.Prompt.ToggleDisplay(false);
+		GameManagerScript.Instance.Prompt.ToggleDisplay(false);
 		canFeed = false;
 	}
 }

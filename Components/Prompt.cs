@@ -7,6 +7,7 @@ public partial class Prompt : Node2D
 	
 	public override void _Ready()
 	{
+		GameManagerScript.Instance.SetPrompt(this);
 		label = GetNode<Label>("Label");
 		ToggleDisplay(false);
 	}

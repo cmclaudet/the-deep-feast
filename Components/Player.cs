@@ -12,6 +12,7 @@ public partial class Player : CharacterBody2D
 	
 	public override void _Ready()
 	{
+		GameManagerScript.Instance.SetPlayer(this);
 		animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		animatedSprite.Play("idle");
 	}
@@ -27,7 +28,7 @@ public partial class Player : CharacterBody2D
 
 		float inputDir = Input.GetAxis("ui_left", "ui_right");
 		velocity.X = inputDir * MoveSpeed;
-		//
+		// disable jump for now, maybe we turn it on later
 		// if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
 		// 	velocity.Y = -JumpForce;
 

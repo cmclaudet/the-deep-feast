@@ -20,26 +20,26 @@ public partial class FoodPile : Node2D
 		if (Input.IsActionJustReleased("ui_accept") && canPickFood)
 		{
 			GD.Print("Picking food");
-			GameManager.Instance.Player.SetCarriedObjectSprite(foodTexture);
+			GameManagerScript.Instance.Player.SetCarriedObjectSprite(foodTexture);
 			SetCannotPickFood();
 		}
 	}
 
 	private void OnBodyEntered(Node2D body)
 	{
-		if (body is Player && !GameManager.Instance.Player.IsCarryingObject)
+		if (body is Player && !GameManagerScript.Instance.Player.IsCarryingObject)
 		{
 			GD.Print($"Trigger hit by Player");
-			GameManager.Instance.Prompt.SetText("PICK UP (SPACE)");
-			GameManager.Instance.Prompt.SetOver(this);
-			GameManager.Instance.Prompt.ToggleDisplay(true);
+			GameManagerScript.Instance.Prompt.SetText("PICK UP (SPACE)");
+			GameManagerScript.Instance.Prompt.SetOver(this);
+			GameManagerScript.Instance.Prompt.ToggleDisplay(true);
 			canPickFood = true;
 		}
 	}
 	
 	private void OnBodyExited(Node2D body)
 	{
-		if (body is Player && !GameManager.Instance.Player.IsCarryingObject)
+		if (body is Player && !GameManagerScript.Instance.Player.IsCarryingObject)
 		{
 			SetCannotPickFood();
 		}
@@ -47,7 +47,7 @@ public partial class FoodPile : Node2D
 
 	private void SetCannotPickFood()
 	{
-		GameManager.Instance.Prompt.ToggleDisplay(false);
+		GameManagerScript.Instance.Prompt.ToggleDisplay(false);
 		canPickFood = false;
 	}
 }

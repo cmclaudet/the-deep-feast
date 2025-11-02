@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dorax4r82p8aj"]
+
+[ext_resource type="PackedScene" uid="uid://darfvdkw15gi2" path="res://Components/particles_fish_food.tscn" id="1_ajwny"]
+[ext_resource type="Script" uid="uid://ng2xuls4221o" path="res://Components/FishTank.cs" id="1_i7umr"]
+[ext_resource type="PackedScene" uid="uid://xp2n2wqiwus6" path="res://Components/fish.tscn" id="3_iun4b"]
+
+[node name="FishTank" type="Node2D" node_paths=PackedStringArray("fishFoodParticles", "fish")]
+script = ExtResource("1_i7umr")
+fishFoodParticles = NodePath("ParticlesFishFood")
+fish = NodePath("Fish")
+
+[node name="ParticlesFishFood" parent="." instance=ExtResource("1_ajwny")]
+position = Vector2(64, 0)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 135.0
+offset_bottom = 171.0
+pivot_offset = Vector2(67.5, 85.5)
+color = Color(0.039215688, 0.039215688, 0.039215688, 0.20784314)
+
+[node name="Fish" parent="." instance=ExtResource("3_iun4b")]
+position = Vector2(66, 98)
+FishName = "Bruno"

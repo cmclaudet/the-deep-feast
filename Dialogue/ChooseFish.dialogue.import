@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dyl5eacs8p4fe"
+path="res://.godot/imported/ChooseFish.dialogue-bf179bf328db91f8aa85ae18d90e1aed.tres"
+
+[deps]
+
+source_file="res://Dialogue/ChooseFish.dialogue"
+dest_files=["res://.godot/imported/ChooseFish.dialogue-bf179bf328db91f8aa85ae18d90e1aed.tres"]
+
+[params]
+
+defaults=true

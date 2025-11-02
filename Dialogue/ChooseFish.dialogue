@@ -1,0 +1,15 @@
+~ feedFish
+- Bruno [if not GameState.IsBrunoFed]
+	do GameManager.FeedFish("Bruno")
+	set GameState.IsBrunoFed = true
+	=> END
+- Lily [if not GameState.IsLilyFed]
+	do GameManager.FeedFish("Lily")
+	set GameState.IsLilyFed = true
+	=> END
+- Martha [if not GameState.IsMarthaFed]
+	do GameManager.FeedFish("Martha")
+	set GameState.IsMarthaFed = true
+	=> END
+- Exit => END
+=> END

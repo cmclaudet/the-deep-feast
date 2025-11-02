@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://j5ylltbkvldv"]
+[gd_scene load_steps=17 format=3 uid="uid://j5ylltbkvldv"]
 
 [ext_resource type="PackedScene" uid="uid://5wachrcb51g2" path="res://Components/player.tscn" id="1_pq8q7"]
 [ext_resource type="Script" uid="uid://can4v8h0dvtnv" path="res://Components/Exit.cs" id="1_vyht1"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dorax4r82p8aj" path="res://Components/fish_tank.tscn" id="8_bf3um"]
 [ext_resource type="PackedScene" path="res://Components/canvas_layer.tscn" id="8_huihk"]
 [ext_resource type="Texture2D" uid="uid://c4q73mw4ut4su" path="res://Art/Environment/tank1.png" id="8_tw3kd"]
+[ext_resource type="Texture2D" uid="uid://ov2nvqdonx8s" path="res://Art/TMP/bubble_small_deepfeast.png" id="9_gd4vy"]
 [ext_resource type="Texture2D" uid="uid://dq83kh60hy3er" path="res://Art/Environment/tank2.png" id="9_tw3kd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vyht1"]
@@ -146,6 +147,20 @@ z_index = 1
 position = Vector2(24.713902, 68)
 scale = Vector2(0.14997527, 0.16296293)
 texture = ExtResource("8_tw3kd")
+
+[node name="bubbles" type="CPUParticles2D" parent="FishTanks/FishTank"]
+position = Vector2(-9, 123)
+texture = ExtResource("9_gd4vy")
+lifetime = 1.5999999999999999
+speed_scale = 0.5
+explosiveness = 0.2
+randomness = 0.7
+spread = 35.0
+gravity = Vector2(0, -80)
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+scale_amount_min = 0.3
+scale_amount_max = 0.5
 
 [node name="FishTank2" parent="FishTanks" instance=ExtResource("8_bf3um")]
 position = Vector2(-52, -237)

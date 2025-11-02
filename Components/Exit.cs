@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class Exit : ColorRect
 {
@@ -18,12 +19,24 @@ public partial class Exit : ColorRect
     public override void _Process(double delta)
     {
         base._Process(delta);
+        
         if (Input.IsActionJustPressed("ui_accept") && canEndDay)
         {
-            // reset state
-            // reload scene
             GD.Print("End the day!");
+            GameStateScript.Instance.IncrementRound();
+            _ = Reload();
         }
+    }
+
+    private async Task Reload()
+    {
+        GD.Print("Reloading");
+        var fader = GameManagerScript.Instance.FadeOut;
+
+        await fader.DoFadeOut();
+        
+        GetTree().ReloadCurrentScene();
+        await fader.DoFadeIn();
     }
 
     private void OnBodyExited(Node2D body)

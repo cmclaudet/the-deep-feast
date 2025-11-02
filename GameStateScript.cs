@@ -37,9 +37,9 @@ public partial class GameStateScript : Node
         }
     }
 
-    public void UpdateRound(int newRound)
+    public void IncrementRound()
     {
-        Round = newRound;
+        Round++;
         IsBrunoFed = false;
         IsLilyFed = false;
         IsMarthaFed = false;

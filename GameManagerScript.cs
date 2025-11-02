@@ -11,14 +11,18 @@ public partial class GameManagerScript : Node
 	private ControlPanel controlPanel;
 	private FishTank[] fishTanks = [];
 	private Exit exit;
+	private FadeOut fadeOut;
 
 	public Prompt Prompt => prompt;
 	public Player Player => player;
+	public FadeOut FadeOut => fadeOut;
 
 	public override void _Ready()
 	{
 		Instance = this;
 	}
+	
+	public void SetFadeOut(FadeOut fadeOut) => this.fadeOut = fadeOut;
 
 	public void SetPrompt(Prompt prompt)
 	{
@@ -53,10 +57,6 @@ public partial class GameManagerScript : Node
 				GD.Print("Found fish tank for fish " + fishTank.Name);
 				fishTank.FeedFish();
 				break;
-			}
-			else
-			{
-				GD.Print("Fish with name " + fishName + " doesn't match tank " + fishTank.Name);
 			}
 		}
 

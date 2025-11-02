@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class FishTank : Node2D
 {
@@ -23,5 +24,7 @@ public partial class FishTank : Node2D
 		fishFoodParticles.Visible = true;
 		
 		GD.Print($"Feeding {fish.FishName}");
+		
+		Task.Delay(TimeSpan.FromSeconds(5)).ContinueWith(_ => fishFoodParticles.Emitting = false);
 	}
 }

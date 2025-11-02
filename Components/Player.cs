@@ -5,7 +5,10 @@ public partial class Player : CharacterBody2D
 	[Export] public float MoveSpeed { get; set; } = 200.0f;
 	[Export] public float JumpForce { get; set; } = 400.0f;
 	[Export] public float Gravity { get; set; } = 900.0f;
+	[Export] private Sprite2D CarriedObjectSprite;
 	private AnimatedSprite2D animatedSprite;
+	
+	public bool IsCarryingObject => CarriedObjectSprite.Visible && CarriedObjectSprite != null;
 	
 	public override void _Ready()
 	{
@@ -24,9 +27,9 @@ public partial class Player : CharacterBody2D
 
 		float inputDir = Input.GetAxis("ui_left", "ui_right");
 		velocity.X = inputDir * MoveSpeed;
-
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
-			velocity.Y = -JumpForce;
+		//
+		// if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
+		// 	velocity.Y = -JumpForce;
 
 		Velocity = velocity;
 		MoveAndSlide();
@@ -48,5 +51,17 @@ public partial class Player : CharacterBody2D
 		{
 			animatedSprite.Play("idle");
 		}
+	}
+
+	public void SetCarriedObjectSprite(Texture2D carriedObject)
+	{
+		CarriedObjectSprite.Texture = carriedObject;
+		CarriedObjectSprite.Show();
+	}
+
+	public void DisableCarriedObjectSprite()
+	{
+		CarriedObjectSprite.Texture = null;
+		CarriedObjectSprite.Hide();
 	}
 }

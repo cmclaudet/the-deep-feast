@@ -16,9 +16,10 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jnlp7"]
 
-[node name="Root" type="Node2D" node_paths=PackedStringArray("prompt")]
+[node name="Root" type="Node2D" node_paths=PackedStringArray("prompt", "player")]
 script = ExtResource("1_vyht1")
 prompt = NodePath("Prompt")
+player = NodePath("Player")
 
 [node name="Background" type="ColorRect" parent="."]
 offset_left = -1394.0
@@ -82,6 +83,7 @@ linear_accel_max = -1.0
 [node name="FoodPile" type="Node2D" parent="."]
 position = Vector2(307, -20)
 script = ExtResource("5_l8v81")
+foodTexture = ExtResource("5_jnlp7")
 
 [node name="Sprite2D" type="Sprite2D" parent="FoodPile"]
 position = Vector2(2.9999971, 17)

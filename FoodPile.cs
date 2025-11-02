@@ -4,6 +4,9 @@ using System;
 public partial class FoodPile : Node2D
 {
 	private Area2D area2D;
+	private bool canPickFood;
+	[Export] private Texture2D foodTexture;
+	
 	public override void _Ready()
 	{
 		area2D = GetNode<Area2D>("Area2D");
@@ -11,22 +14,40 @@ public partial class FoodPile : Node2D
 		area2D.BodyExited += OnBodyExited;
 	}
 
+	public override void _Process(double delta)
+	{
+		base._Process(delta);
+		if (Input.IsActionJustReleased("ui_accept") && canPickFood)
+		{
+			GD.Print("Picking food");
+			GameManager.Instance.Player.SetCarriedObjectSprite(foodTexture);
+			SetCannotPickFood();
+		}
+	}
+
 	private void OnBodyEntered(Node2D body)
 	{
-		if (body is Player)
+		if (body is Player && !GameManager.Instance.Player.IsCarryingObject)
 		{
 			GD.Print($"Trigger hit by Player");
 			GameManager.Instance.Prompt.SetText("PICK UP (SPACE)");
 			GameManager.Instance.Prompt.SetOver(this);
 			GameManager.Instance.Prompt.ToggleDisplay(true);
+			canPickFood = true;
 		}
 	}
 	
 	private void OnBodyExited(Node2D body)
 	{
-		if (body is Player)
+		if (body is Player && !GameManager.Instance.Player.IsCarryingObject)
 		{
-			GameManager.Instance.Prompt.ToggleDisplay(false);
+			SetCannotPickFood();
 		}
+	}
+
+	private void SetCannotPickFood()
+	{
+		GameManager.Instance.Prompt.ToggleDisplay(false);
+		canPickFood = false;
 	}
 }

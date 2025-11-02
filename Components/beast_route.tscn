@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://22fougl3hrrw"]
+
+[ext_resource type="PackedScene" uid="uid://b4tjf5hx85x4r" path="res://Components/beast_waypoint.tscn" id="1_2w3vu"]
+[ext_resource type="Script" uid="uid://bexfebqtts6oe" path="res://Components/BeastRoute.cs" id="1_uxn1n"]
+
+[node name="BeastRoute" type="Node" node_paths=PackedStringArray("waypoints")]
+script = ExtResource("1_uxn1n")
+lightMoveSpeed = 1.0
+waypoints = [NodePath("Waypoint"), NodePath("Waypoint2")]
+
+[node name="Waypoint" parent="." instance=ExtResource("1_2w3vu")]
+position = Vector2(-64, -35)
+
+[node name="Waypoint2" parent="." instance=ExtResource("1_2w3vu")]
+position = Vector2(147, -35)

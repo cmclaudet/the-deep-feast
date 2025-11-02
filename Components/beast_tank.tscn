@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh7bkpts4wmvv"]
+
+[ext_resource type="PackedScene" uid="uid://dorax4r82p8aj" path="res://Components/fish_tank.tscn" id="1_fmmsv"]
+[ext_resource type="Script" path="res://Components/Beast.cs" id="2_rjyj7"]
+
+[node name="BeastTank" instance=ExtResource("1_fmmsv")]
+
+[node name="Fish" parent="." index="2"]
+script = ExtResource("2_rjyj7")
+FishName = "??"

@@ -50,4 +50,9 @@ public partial class GameStateScript : Node
     {
         return IsBrunoFed && IsLilyFed && IsMarthaFed && IsBeastFed;
     }
+
+    public bool IsAllButBeastFed()
+    {
+        return IsBrunoFed && IsLilyFed && IsMarthaFed;
+    }
 }

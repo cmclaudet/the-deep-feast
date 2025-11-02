@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://d18bwd6kkm430"]
+
+[ext_resource type="Script" uid="uid://cj30eivay30i5" path="res://BeastStealthMode.cs" id="1_qqusa"]
+[ext_resource type="Texture2D" uid="uid://dblpv4a1qeffq" path="res://Art/TMP/fish.png" id="2_lv5dp"]
+[ext_resource type="Texture2D" uid="uid://bk810bhgvvt2w" path="res://Art/TMP/Triangle.png" id="3_ohca8"]
+
+[node name="BeastStealthMode" type="Node2D" node_paths=PackedStringArray("light", "route")]
+script = ExtResource("1_qqusa")
+light = NodePath("PointLight2D")
+route = NodePath("")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(7, 59)
+scale = Vector2(0.2648649, 0.2648649)
+texture = ExtResource("2_lv5dp")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-6, 57)
+color = Color(1, 0.9675723, 0.384911, 1)
+texture = ExtResource("3_ohca8")
+offset = Vector2(0, 150)

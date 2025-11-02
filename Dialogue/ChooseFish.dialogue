@@ -12,7 +12,7 @@ Who must you feed?
 	do GameManager.FeedFish("Martha")
 	set GameState.IsMarthaFed = true
 	=> END
-- ?? [if not GameState.IsBeastFed]
+- ?? [if not GameState.IsBeastFed && not GameManager.IsRoundWithStealth()]
 	do GameManager.FeedFish("??")
 	set GameState.IsMarthaFed = true
 	=> END

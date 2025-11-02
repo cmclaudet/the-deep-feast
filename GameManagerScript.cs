@@ -12,6 +12,7 @@ public partial class GameManagerScript : Node
 	private FishTank[] fishTanks = [];
 	private Exit exit;
 	private FadeOut fadeOut;
+	private RoundController roundController;
 
 	public Prompt Prompt => prompt;
 	public Player Player => player;
@@ -21,6 +22,8 @@ public partial class GameManagerScript : Node
 	{
 		Instance = this;
 	}
+	
+	public void SetRoundController(RoundController roundController) => this.roundController = roundController;
 	
 	public void SetFadeOut(FadeOut fadeOut) => this.fadeOut = fadeOut;
 
@@ -61,9 +64,23 @@ public partial class GameManagerScript : Node
 		}
 
 		controlPanel.OnFishFeed();
-		if (GameStateScript.Instance.IsAllFishFed())
+		if (roundController.IsRoundWithStealth() && GameStateScript.Instance.IsAllButBeastFed())
+		{
+			roundController.StartStealthMode();
+		}
+		else if (GameStateScript.Instance.IsAllFishFed())
 		{
 			exit.SetUnlocked();
 		}
+	}
+
+	public bool IsBeastFeedable()
+	{
+		return roundController.IsBeastFeedable();
+	}
+
+	public bool IsRoundWithStealth()
+	{
+		return roundController.IsRoundWithStealth();
 	}
 }

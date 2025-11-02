@@ -45,4 +45,9 @@ public partial class GameStateScript : Node
         IsMarthaFed = false;
         IsBeastFed = false;
     }
+
+    public bool IsAllFishFed()
+    {
+        return IsBrunoFed && IsLilyFed && IsMarthaFed && IsBeastFed;
+    }
 }

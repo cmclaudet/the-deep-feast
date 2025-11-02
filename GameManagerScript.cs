@@ -10,6 +10,7 @@ public partial class GameManagerScript : Node
 	private Player player;
 	private ControlPanel controlPanel;
 	private FishTank[] fishTanks = [];
+	private Exit exit;
 
 	public Prompt Prompt => prompt;
 	public Player Player => player;
@@ -38,6 +39,8 @@ public partial class GameManagerScript : Node
 	{
 		this.controlPanel = controlPanel;
 	}
+	
+	public void SetExit(Exit exit) => this.exit = exit;
 
 	public void FeedFish(string fishName)
 	{
@@ -58,5 +61,9 @@ public partial class GameManagerScript : Node
 		}
 
 		controlPanel.OnFishFeed();
+		if (GameStateScript.Instance.IsAllFishFed())
+		{
+			exit.SetUnlocked();
+		}
 	}
 }

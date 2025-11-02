@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://j5ylltbkvldv"]
+[gd_scene load_steps=8 format=3 uid="uid://j5ylltbkvldv"]
 
 [ext_resource type="PackedScene" uid="uid://5wachrcb51g2" path="res://Components/player.tscn" id="1_pq8q7"]
 [ext_resource type="PackedScene" uid="uid://d2byd0f0uc1en" path="res://Components/control_panel.tscn" id="2_pyidc"]
-[ext_resource type="Script" uid="uid://3ci3e7mykr08" path="res://Components/Fish.cs" id="3_28aoi"]
-[ext_resource type="Texture2D" uid="uid://dblpv4a1qeffq" path="res://Art/TMP/fish.png" id="3_vvh5c"]
+[ext_resource type="PackedScene" uid="uid://xp2n2wqiwus6" path="res://Components/fish.tscn" id="3_28aoi"]
 [ext_resource type="Texture2D" uid="uid://dt6dm7pqsmlu6" path="res://Art/TMP/fishfood.png" id="5_jnlp7"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pq8q7"]
@@ -11,19 +10,6 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vvh5c"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pyidc"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_vvh5c"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_28aoi"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_vvh5c")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}]
 
 [node name="Root" type="Node2D"]
 
@@ -34,13 +20,13 @@ offset_right = 417.0
 offset_bottom = 24.0
 color = Color(0.6750475, 0.74099743, 0.5995382, 1)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -100)
-
 [node name="ControlPanel" parent="." instance=ExtResource("2_pyidc")]
 
 [node name="Player" parent="." instance=ExtResource("1_pq8q7")]
 position = Vector2(-3, -25)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(3, -75)
 
 [node name="Foreground" type="ColorRect" parent="."]
 offset_left = -395.0
@@ -68,44 +54,8 @@ shape = SubResource("WorldBoundaryShape2D_pyidc")
 
 [node name="FishContainer" type="Node" parent="."]
 
-[node name="Fish" type="CharacterBody2D" parent="FishContainer"]
-position = Vector2(120, -151)
-script = ExtResource("3_28aoi")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FishContainer/Fish"]
-shape = SubResource("CircleShape2D_vvh5c")
-disabled = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FishContainer/Fish"]
-scale = Vector2(0.072972976, 0.072972976)
-sprite_frames = SubResource("SpriteFrames_28aoi")
-animation = &"idle"
-
-[node name="Fish2" type="CharacterBody2D" parent="FishContainer"]
-position = Vector2(15, -200)
-script = ExtResource("3_28aoi")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FishContainer/Fish2"]
-shape = SubResource("CircleShape2D_vvh5c")
-disabled = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FishContainer/Fish2"]
-scale = Vector2(0.072972976, 0.072972976)
-sprite_frames = SubResource("SpriteFrames_28aoi")
-animation = &"idle"
-
-[node name="Fish3" type="CharacterBody2D" parent="FishContainer"]
-position = Vector2(-80, -143)
-script = ExtResource("3_28aoi")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FishContainer/Fish3"]
-shape = SubResource("CircleShape2D_vvh5c")
-disabled = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FishContainer/Fish3"]
-scale = Vector2(0.072972976, 0.072972976)
-sprite_frames = SubResource("SpriteFrames_28aoi")
-animation = &"idle"
+[node name="Fish" parent="FishContainer" instance=ExtResource("3_28aoi")]
+position = Vector2(84, -46)
 
 [node name="ParticlesFishFood" type="CPUParticles2D" parent="."]
 position = Vector2(-133, -264)
@@ -117,5 +67,7 @@ spread = 39.8
 gravity = Vector2(0, 0)
 initial_velocity_min = 9.73
 initial_velocity_max = 20.6
+angular_velocity_min = -5.0
+angular_velocity_max = 8.0
 linear_accel_min = -2.0
 linear_accel_max = -1.0

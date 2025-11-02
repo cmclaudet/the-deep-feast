@@ -51,6 +51,11 @@ public partial class Player : CharacterBody2D
 		{
 			animatedSprite.Play("idle");
 		}
+
+		if (Input.IsActionPressed("ui_accept") && IsCarryingObject)
+		{
+			DisableCarriedObjectSprite();
+		}
 	}
 
 	public void SetCarriedObjectSprite(Texture2D carriedObject)

@@ -63,9 +63,10 @@ shape = SubResource("WorldBoundaryShape2D_pyidc")
 [node name="FishContainer" type="Node" parent="."]
 
 [node name="Fish" parent="FishContainer" instance=ExtResource("3_28aoi")]
-position = Vector2(84, -46)
+position = Vector2(-48, -137)
 
 [node name="ParticlesFishFood" type="CPUParticles2D" parent="."]
+visible = false
 position = Vector2(-133, -264)
 amount = 13
 texture = ExtResource("5_jnlp7")

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://poumb1rm7n8k"]
+
+[ext_resource type="Script" uid="uid://fkjbpvn3coyl" path="res://Components/Prompt.cs" id="1_obou1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jnlp7"]
+font_size = 13
+
+[node name="Prompt" type="Node2D"]
+script = ExtResource("1_obou1")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = -11.5
+offset_right = 50.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "PICK UP (SPACE)"
+label_settings = SubResource("LabelSettings_jnlp7")
+horizontal_alignment = 1
+vertical_alignment = 1

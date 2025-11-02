@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://j5ylltbkvldv"]
+[gd_scene load_steps=18 format=3 uid="uid://j5ylltbkvldv"]
 
 [ext_resource type="PackedScene" uid="uid://5wachrcb51g2" path="res://Components/player.tscn" id="1_pq8q7"]
 [ext_resource type="Script" uid="uid://can4v8h0dvtnv" path="res://Components/Exit.cs" id="1_vyht1"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c4q73mw4ut4su" path="res://Art/Environment/tank1.png" id="8_tw3kd"]
 [ext_resource type="Texture2D" uid="uid://ov2nvqdonx8s" path="res://Art/TMP/bubble_small_deepfeast.png" id="9_gd4vy"]
 [ext_resource type="Texture2D" uid="uid://dq83kh60hy3er" path="res://Art/Environment/tank2.png" id="9_tw3kd"]
+[ext_resource type="Texture2D" uid="uid://dhf6t3gfaerlg" path="res://Art/Environment/tankbeast.png" id="11_qw60f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vyht1"]
 size = Vector2(26, 53)
@@ -132,7 +133,7 @@ position = Vector2(302, -32)
 [node name="FishTanks" type="Node" parent="."]
 
 [node name="FishTank" parent="FishTanks" instance=ExtResource("8_bf3um")]
-position = Vector2(-148, -237)
+position = Vector2(-157, -234)
 
 [node name="ParticlesFishFood" parent="FishTanks/FishTank" index="0"]
 z_index = 1
@@ -163,31 +164,43 @@ scale_amount_min = 0.3
 scale_amount_max = 0.5
 
 [node name="FishTank2" parent="FishTanks" instance=ExtResource("8_bf3um")]
-position = Vector2(-52, -237)
+position = Vector2(-35, -241)
 
 [node name="ParticlesFishFood" parent="FishTanks/FishTank2" index="0"]
 z_index = 1
+
+[node name="ColorRect" parent="FishTanks/FishTank2" index="1"]
+visible = false
 
 [node name="Fish" parent="FishTanks/FishTank2" index="2"]
 z_index = 1
 FishName = "Lily"
 
 [node name="tank2" type="Sprite2D" parent="FishTanks/FishTank2"]
-position = Vector2(45, 92.00001)
-scale = Vector2(0.12314486, 0.21336208)
+position = Vector2(38.9203, 89.50001)
+scale = Vector2(0.1594049, 0.21875)
 texture = ExtResource("9_tw3kd")
 
 [node name="FishTank3" parent="FishTanks" instance=ExtResource("8_bf3um")]
-position = Vector2(47, -237)
+position = Vector2(82, -237)
 
 [node name="Fish" parent="FishTanks/FishTank3" index="2"]
 FishName = "Martha"
 
 [node name="BeastTank" parent="FishTanks" instance=ExtResource("8_bf3um")]
-position = Vector2(145, -237)
+position = Vector2(245, -235)
+
+[node name="ParticlesFishFood" parent="FishTanks/BeastTank" index="0"]
+z_index = 1
 
 [node name="Fish" parent="FishTanks/BeastTank" index="2"]
+z_index = 1
 FishName = "??"
+
+[node name="beasttank" type="Sprite2D" parent="FishTanks/BeastTank"]
+position = Vector2(44.000008, 53.000008)
+scale = Vector2(0.16511501, 0.17962961)
+texture = ExtResource("11_qw60f")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("8_huihk")]
 

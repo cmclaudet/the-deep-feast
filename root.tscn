@@ -8,13 +8,13 @@
 [ext_resource type="Script" uid="uid://cu8pgvmnqt2r5" path="res://Components/FoodPile.cs" id="5_l8v81"]
 [ext_resource type="PackedScene" uid="uid://poumb1rm7n8k" path="res://Components/prompt.tscn" id="6_l8v81"]
 [ext_resource type="PackedScene" uid="uid://dorax4r82p8aj" path="res://Components/fish_tank.tscn" id="8_bf3um"]
-[ext_resource type="PackedScene" uid="uid://dqeu77asqcmel" path="res://Components/canvas_layer.tscn" id="8_huihk"]
+[ext_resource type="PackedScene" path="res://Components/canvas_layer.tscn" id="8_huihk"]
 [ext_resource type="Texture2D" uid="uid://c4q73mw4ut4su" path="res://Art/Environment/tank1.png" id="8_tw3kd"]
 [ext_resource type="Texture2D" uid="uid://ov2nvqdonx8s" path="res://Art/TMP/bubble_small_deepfeast.png" id="9_gd4vy"]
 [ext_resource type="Texture2D" uid="uid://dq83kh60hy3er" path="res://Art/Environment/tank2.png" id="9_tw3kd"]
-[ext_resource type="PackedScene" uid="uid://d18bwd6kkm430" path="res://Components/beast_stealth_mode.tscn" id="10_gd4vy"]
+[ext_resource type="PackedScene" path="res://Components/beast_stealth_mode.tscn" id="10_gd4vy"]
 [ext_resource type="Texture2D" uid="uid://dhf6t3gfaerlg" path="res://Art/Environment/tankbeast.png" id="11_qw60f"]
-[ext_resource type="PackedScene" uid="uid://22fougl3hrrw" path="res://Components/beast_route.tscn" id="12_eji0w"]
+[ext_resource type="PackedScene" path="res://Components/beast_route.tscn" id="12_eji0w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vyht1"]
 size = Vector2(26, 53)
@@ -31,6 +31,7 @@ size = Vector2(26, 53)
 script = ExtResource("1_huihk")
 BeastStealthMode = NodePath("BeastStealthMode")
 Beast = NodePath("FishTanks/BeastTank/Fish")
+testStealthMode = true
 metadata/_edit_group_ = true
 
 [node name="Background" type="ColorRect" parent="."]
@@ -139,7 +140,7 @@ position = Vector2(302, -32)
 [node name="FishTanks" type="Node" parent="."]
 
 [node name="FishTank" parent="FishTanks" instance=ExtResource("8_bf3um")]
-position = Vector2(-157, -234)
+position = Vector2(-214, -240)
 
 [node name="ParticlesFishFood" parent="FishTanks/FishTank" index="0"]
 z_index = 1
@@ -150,13 +151,25 @@ visible = false
 [node name="Fish" parent="FishTanks/FishTank" index="2"]
 z_index = 1
 
+[node name="ColorRect2" parent="FishTanks/FishTank" index="3"]
+offset_left = -8.0
+offset_top = 132.0
+offset_right = 72.0
+offset_bottom = 154.0
+
+[node name="Label" parent="FishTanks/FishTank" index="4"]
+offset_left = 4.0
+offset_top = 132.0
+offset_right = 62.0
+offset_bottom = 155.0
+
 [node name="tank1" type="Sprite2D" parent="FishTanks/FishTank"]
-position = Vector2(24.713902, 68)
-scale = Vector2(0.14997527, 0.16296293)
+position = Vector2(22.000006, 64.00001)
+scale = Vector2(0.13037623, 0.14166664)
 texture = ExtResource("8_tw3kd")
 
 [node name="bubbles" type="CPUParticles2D" parent="FishTanks/FishTank"]
-position = Vector2(-9, 123)
+position = Vector2(-5, 120)
 texture = ExtResource("9_gd4vy")
 lifetime = 1.6
 speed_scale = 0.5
@@ -170,7 +183,7 @@ scale_amount_min = 0.3
 scale_amount_max = 0.5
 
 [node name="FishTank2" parent="FishTanks" instance=ExtResource("8_bf3um")]
-position = Vector2(-35, -241)
+position = Vector2(-97, -276)
 
 [node name="ParticlesFishFood" parent="FishTanks/FishTank2" index="0"]
 z_index = 1
@@ -183,13 +196,45 @@ z_index = 1
 FishName = "Lily"
 
 [node name="tank2" type="Sprite2D" parent="FishTanks/FishTank2"]
-position = Vector2(38.9203, 89.50001)
-scale = Vector2(0.1594049, 0.21875)
+position = Vector2(44.455406, 108.50001)
+scale = Vector2(0.1688845, 0.16271552)
 texture = ExtResource("9_tw3kd")
 
 [node name="bubbles" type="CPUParticles2D" parent="FishTanks/FishTank2"]
-position = Vector2(0, 129)
+position = Vector2(3, 138)
 scale = Vector2(0.1594049, 0.21874999)
+texture = ExtResource("9_gd4vy")
+lifetime = 1.2
+speed_scale = 0.5
+explosiveness = 0.2
+randomness = 0.7
+spread = 35.0
+gravity = Vector2(0, -80)
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+scale_amount_min = 0.3
+scale_amount_max = 0.5
+
+[node name="FishTank3" parent="FishTanks" instance=ExtResource("8_bf3um")]
+position = Vector2(271, -257)
+
+[node name="ParticlesFishFood" parent="FishTanks/FishTank3" index="0"]
+z_index = 1
+
+[node name="ColorRect" parent="FishTanks/FishTank3" index="1"]
+visible = false
+
+[node name="Fish" parent="FishTanks/FishTank3" index="2"]
+z_index = 1
+FishName = "Martha"
+
+[node name="tank3" type="Sprite2D" parent="FishTanks/FishTank3"]
+position = Vector2(36.999992, 79)
+scale = Vector2(0.13080232, 0.1421296)
+texture = ExtResource("8_tw3kd")
+
+[node name="bubbles" type="CPUParticles2D" parent="FishTanks/FishTank3"]
+position = Vector2(83, 131)
 texture = ExtResource("9_gd4vy")
 lifetime = 1.6
 speed_scale = 0.5
@@ -202,25 +247,20 @@ initial_velocity_max = 5.0
 scale_amount_min = 0.3
 scale_amount_max = 0.5
 
-[node name="FishTank3" parent="FishTanks" instance=ExtResource("8_bf3um")]
-position = Vector2(82, -237)
-
-[node name="Fish" parent="FishTanks/FishTank3" index="2"]
-FishName = "Martha"
-
 [node name="BeastTank" parent="FishTanks" instance=ExtResource("8_bf3um")]
-position = Vector2(245, -235)
+position = Vector2(73, -240)
 
 [node name="ParticlesFishFood" parent="FishTanks/BeastTank" index="0"]
 z_index = 1
 
 [node name="Fish" parent="FishTanks/BeastTank" index="2"]
+visible = false
 z_index = 1
 FishName = "??"
 
 [node name="beasttank" type="Sprite2D" parent="FishTanks/BeastTank"]
-position = Vector2(44.000008, 53.000008)
-scale = Vector2(0.16511501, 0.17962961)
+position = Vector2(51, 53)
+scale = Vector2(0.17617944, 0.19166669)
 texture = ExtResource("11_qw60f")
 
 [node name="bubbles" type="CPUParticles2D" parent="FishTanks/BeastTank"]
@@ -239,10 +279,11 @@ scale_amount_max = 0.6
 [node name="CanvasLayer" parent="." instance=ExtResource("8_huihk")]
 
 [node name="BeastStealthMode" parent="." node_paths=PackedStringArray("route") instance=ExtResource("10_gd4vy")]
-position = Vector2(255, -268)
+position = Vector2(135, -282)
 route = NodePath("../BeastRoute")
 
-[node name="BeastRoute" parent="." instance=ExtResource("12_eji0w")]
+[node name="BeastRoute" parent="." node_paths=PackedStringArray("waypoints") instance=ExtResource("12_eji0w")]
+waypoints = []
 
 [editable path="FishTanks/FishTank"]
 [editable path="FishTanks/FishTank2"]

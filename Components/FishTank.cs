@@ -5,9 +5,11 @@ public partial class FishTank : Node2D
 {
 	[Export] private CpuParticles2D fishFoodParticles;
 	[Export] private Fish fish;
+	[Export] private Label fishLabel;
 	public override void _Ready()
 	{
 		GameManagerScript.Instance.SetFishTank(this);
+		fishLabel.Text = fish.FishName;
 	}
 
 	public bool IsFish(string fishName)

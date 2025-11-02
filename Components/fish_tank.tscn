@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://dorax4r82p8aj"]
+[gd_scene load_steps=5 format=3 uid="uid://dorax4r82p8aj"]
 
 [ext_resource type="PackedScene" uid="uid://darfvdkw15gi2" path="res://Components/particles_fish_food.tscn" id="1_ajwny"]
 [ext_resource type="Script" uid="uid://ng2xuls4221o" path="res://Components/FishTank.cs" id="1_i7umr"]
 [ext_resource type="PackedScene" uid="uid://xp2n2wqiwus6" path="res://Components/fish.tscn" id="3_iun4b"]
 
-[node name="FishTank" type="Node2D" node_paths=PackedStringArray("fishFoodParticles", "fish")]
+[sub_resource type="LabelSettings" id="LabelSettings_iun4b"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="FishTank" type="Node2D" node_paths=PackedStringArray("fishFoodParticles", "fish", "fishLabel")]
 script = ExtResource("1_i7umr")
 fishFoodParticles = NodePath("ParticlesFishFood")
 fish = NodePath("Fish")
+fishLabel = NodePath("Label")
 
 [node name="ParticlesFishFood" parent="." instance=ExtResource("1_ajwny")]
 position = Vector2(64, 0)
@@ -21,3 +25,26 @@ color = Color(0.039215688, 0.039215688, 0.039215688, 0.20784314)
 [node name="Fish" parent="." instance=ExtResource("3_iun4b")]
 position = Vector2(66, 98)
 FishName = "Bruno"
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 29.0
+offset_top = 148.0
+offset_right = 109.0
+offset_bottom = 170.0
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 41.0
+offset_top = 148.0
+offset_right = 99.0
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BRUNO"
+label_settings = SubResource("LabelSettings_iun4b")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,4 +1,5 @@
 ~ feedFish
+Who must you feed?
 - Bruno [if not GameState.IsBrunoFed]
 	do GameManager.FeedFish("Bruno")
 	set GameState.IsBrunoFed = true
@@ -11,5 +12,10 @@
 	do GameManager.FeedFish("Martha")
 	set GameState.IsMarthaFed = true
 	=> END
+- ?? [if not GameState.IsBeastFed]
+	do GameManager.FeedFish("??")
+	set GameState.IsMarthaFed = true
+	=> END
+	
 - Exit => END
 => END

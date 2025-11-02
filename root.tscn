@@ -97,17 +97,24 @@ position = Vector2(302, -32)
 position = Vector2(-148, -237)
 
 [node name="FishTank2" parent="FishTanks" instance=ExtResource("8_bf3um")]
-position = Vector2(-5, -237)
+position = Vector2(-52, -237)
 
 [node name="Fish" parent="FishTanks/FishTank2" index="2"]
 FishName = "Lily"
 
 [node name="FishTank3" parent="FishTanks" instance=ExtResource("8_bf3um")]
-position = Vector2(138, -237)
+position = Vector2(47, -237)
 
 [node name="Fish" parent="FishTanks/FishTank3" index="2"]
 FishName = "Martha"
 
+[node name="BeastTank" parent="FishTanks" instance=ExtResource("8_bf3um")]
+position = Vector2(145, -237)
+
+[node name="Fish" parent="FishTanks/BeastTank" index="2"]
+FishName = "??"
+
 [editable path="FishTanks/FishTank"]
 [editable path="FishTanks/FishTank2"]
 [editable path="FishTanks/FishTank3"]
+[editable path="FishTanks/BeastTank"]

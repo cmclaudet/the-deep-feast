@@ -9,6 +9,7 @@ public partial class ControlPanel : ColorRect
 	private bool canPlaceFood;
 	private bool containsFood;
 	private bool canFeed;
+	private bool isDialogueRunning;
 
 	public override void _Ready()
 	{
@@ -22,12 +23,14 @@ public partial class ControlPanel : ColorRect
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
-		if (Input.IsActionJustReleased("ui_accept"))
+		if (!isDialogueRunning && Input.IsActionJustPressed("ui_accept"))
 		{
 			if (canFeed)
 			{
 				var dialogue = GD.Load<Resource>("res://Dialogue/ChooseFish.dialogue");
-				DialogueManager.ShowExampleDialogueBalloon(dialogue, "feedFish");
+				DialogueManager.ShowDialogueBalloonScene("res://addons/dialogue_manager/example_balloon/small_example_balloon.tscn", dialogue, "feedFish");
+				DialogueManager.DialogueEnded += OnDialogueEnded;
+				isDialogueRunning = true;
 			}
 			else if (canPlaceFood)
 			{
@@ -39,6 +42,11 @@ public partial class ControlPanel : ColorRect
 				SetCanFeed();
 			}
 		}
+	}
+
+	private void OnDialogueEnded(Resource dialogueresource)
+	{
+		isDialogueRunning = false;
 	}
 
 	public void OnFishFeed()

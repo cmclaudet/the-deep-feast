@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://fkjbpvn3coyl" path="res://Components/Prompt.cs" id="1_obou1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jnlp7"]
-font_size = 13
+font_size = 24
 
 [node name="Prompt" type="Node2D"]
 script = ExtResource("1_obou1")

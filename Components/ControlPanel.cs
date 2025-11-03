@@ -28,7 +28,7 @@ public partial class ControlPanel : ColorRect
 			if (canFeed)
 			{
 				var dialogue = GD.Load<Resource>("res://Dialogue/ChooseFish.dialogue");
-				DialogueManager.ShowDialogueBalloonScene("res://addons/dialogue_manager/example_balloon/small_example_balloon.tscn", dialogue, "feedFish");
+				DialogueManager.ShowExampleDialogueBalloon(dialogue, "feedFish");
 				DialogueManager.DialogueEnded += OnDialogueEnded;
 				isDialogueRunning = true;
 			}
@@ -89,7 +89,7 @@ public partial class ControlPanel : ColorRect
 	{
 		var instancePrompt = GameManagerScript.Instance.Prompt;
 		instancePrompt.SetText("FEED (SPACE)");
-		instancePrompt.SetOver(area2D, -50);
+		instancePrompt.SetOver(area2D, -70);
 		instancePrompt.ToggleDisplay(true);
 		canFeed = true;
 	}

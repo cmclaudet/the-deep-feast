@@ -97,7 +97,9 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("CarriedObjectSprite")]
+scale = Vector2(3, 3)
 script = ExtResource("1_6d8je")
+MoveSpeed = 400.0
 CarriedObjectSprite = NodePath("CarriedObject")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -106,6 +108,7 @@ scale = Vector2(1.21, 1.7)
 shape = SubResource("CapsuleShape2D_pyidc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_vyht1")
 animation = &"walk"
 frame_progress = 0.4985221
@@ -113,3 +116,4 @@ frame_progress = 0.4985221
 [node name="CarriedObject" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -41)
+scale = Vector2(0.5, 0.5)

@@ -22,7 +22,7 @@ public partial class Prompt : Node2D
 		label.Text = text;
 	}
 
-	public void SetOver(Node2D node, float yOffset = -10)
+	public void SetOver(Node2D node, float yOffset = -50)
 	{
 		SetPosition(node.GlobalPosition + new Vector2(0, yOffset));
 	}

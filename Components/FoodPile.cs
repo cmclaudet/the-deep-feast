@@ -31,7 +31,7 @@ public partial class FoodPile : Node2D
 		{
 			GD.Print($"Trigger hit by Player");
 			GameManagerScript.Instance.Prompt.SetText("PICK UP (SPACE)");
-			GameManagerScript.Instance.Prompt.SetOver(this);
+			GameManagerScript.Instance.Prompt.SetOver(this, -100);
 			GameManagerScript.Instance.Prompt.ToggleDisplay(true);
 			canPickFood = true;
 		}

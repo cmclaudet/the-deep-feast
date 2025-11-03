@@ -24,15 +24,18 @@ color = Color(0.039215688, 0.039215688, 0.039215688, 0.20784314)
 
 [node name="Fish" parent="." instance=ExtResource("3_iun4b")]
 position = Vector2(50, 92)
+scale = Vector2(2, 2)
 FishName = "Bruno"
 
 [node name="ColorRect2" type="ColorRect" parent="."]
+z_index = 1
 offset_left = 6.0
 offset_top = 148.0
 offset_right = 86.0
 offset_bottom = 170.0
 
 [node name="Label" type="Label" parent="."]
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

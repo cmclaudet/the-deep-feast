@@ -4,33 +4,32 @@
 [ext_resource type="Texture2D" uid="uid://dt6dm7pqsmlu6" path="res://Art/TMP/fishfood.png" id="2_e53kg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4x5l"]
-size = Vector2(44, 42)
+size = Vector2(81, 81)
 
 [node name="ControlPanel" type="ColorRect" node_paths=PackedStringArray("foodSprite")]
 offset_left = -234.0
-offset_top = -81.0
-offset_right = -159.0
+offset_top = -170.0
+offset_right = -97.0
 offset_bottom = 15.0
 color = Color(0.45587373, 0.45587373, 0.45587373, 1)
 script = ExtResource("1_q4x5l")
 foodSprite = NodePath("ColorRect/Sprite2D")
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(36, 67)
+position = Vector2(70, 126)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_q4x5l")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 47.0
-offset_right = 56.0
-offset_bottom = 87.0
+offset_left = 30.0
+offset_top = 85.0
+offset_right = 110.0
+offset_bottom = 166.0
 color = Color(0.22505927, 0.22505927, 0.22505927, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="ColorRect"]
 visible = false
-position = Vector2(20, 20)
+position = Vector2(40, 40)
 texture = ExtResource("2_e53kg")

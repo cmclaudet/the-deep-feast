@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 public partial class GameManagerScript : Node
 {
@@ -13,6 +14,7 @@ public partial class GameManagerScript : Node
 	private Exit exit;
 	private FadeOut fadeOut;
 	private RoundController roundController;
+	private BeastStealthMode beastStealthMode;
 
 	public Prompt Prompt => prompt;
 	public Player Player => player;
@@ -22,7 +24,8 @@ public partial class GameManagerScript : Node
 	{
 		Instance = this;
 	}
-	
+
+	public void SetBeastStealthMode(BeastStealthMode beastStealthMode) => this.beastStealthMode = beastStealthMode;
 	public void SetRoundController(RoundController roundController) => this.roundController = roundController;
 	
 	public void SetFadeOut(FadeOut fadeOut) => this.fadeOut = fadeOut;
@@ -71,6 +74,10 @@ public partial class GameManagerScript : Node
 		else if (GameStateScript.Instance.IsAllFishFed())
 		{
 			exit.SetUnlocked();
+			if (beastStealthMode.IsRouteActive)
+			{
+				beastStealthMode.StopRoute();
+			}
 		}
 	}
 
@@ -78,9 +85,24 @@ public partial class GameManagerScript : Node
 	{
 		return roundController.IsBeastFeedable();
 	}
-
+	
 	public bool IsRoundWithStealth()
 	{
 		return roundController.IsRoundWithStealth();
+	}
+	
+	public void Reload()
+	{
+		_ = ReloadTask();
+	}
+	
+	private async Task ReloadTask()
+	{
+		GD.Print("Reloading");
+
+		await FadeOut.DoFadeOut();
+		
+		GetTree().ReloadCurrentScene();
+		await FadeOut.DoFadeIn();
 	}
 }

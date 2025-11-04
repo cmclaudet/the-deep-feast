@@ -24,19 +24,8 @@ public partial class Exit : ColorRect
         {
             GD.Print("End the day!");
             GameStateScript.Instance.IncrementRound();
-            _ = Reload();
+            GameManagerScript.Instance.Reload();
         }
-    }
-
-    private async Task Reload()
-    {
-        GD.Print("Reloading");
-        var fader = GameManagerScript.Instance.FadeOut;
-
-        await fader.DoFadeOut();
-        
-        GetTree().ReloadCurrentScene();
-        await fader.DoFadeIn();
     }
 
     private void OnBodyExited(Node2D body)

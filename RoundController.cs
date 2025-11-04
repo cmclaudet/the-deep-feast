@@ -9,6 +9,8 @@ public partial class RoundController : Node2D
 	[Export] public BeastStealthMode BeastStealthMode;
 	[Export] public Fish Beast;
 	[Export] private bool testStealthMode;
+	
+	private bool isStealthMode;
 
 	public override void _Ready()
 	{
@@ -19,14 +21,22 @@ public partial class RoundController : Node2D
 		{
 			StartStealthMode();
 		}
+		else if (IsRoundWithStealth())
+		{
+			if (GameStateScript.Instance.IsAllButBeastFed())
+			{
+				StartStealthMode();
+			}
+			else
+			{
+				BeastStealthMode.Hide();
+				Beast.Hide();
+			}
+		}
 		else
 		{
 			BeastStealthMode.Hide();
-
-			if (IsRoundWithStealth())
-			{
-				Beast.Hide();
-			}
+			Beast.Show();
 		}
 	}
 
@@ -35,6 +45,7 @@ public partial class RoundController : Node2D
 		Beast.Hide();
 		BeastStealthMode.Show();
 		BeastStealthMode.StartRoute();
+		isStealthMode = true;
 	}
 
 	public bool IsRoundWithStealth()
@@ -44,6 +55,6 @@ public partial class RoundController : Node2D
 
 	public bool IsBeastFeedable()
 	{
-		return false;
+		return !GameStateScript.Instance.IsBeastFed && (!IsRoundWithStealth() || isStealthMode);
 	}
 }

@@ -3,12 +3,16 @@ using Godot;
 public partial class Player : CharacterBody2D
 {
 	[Export] public PointLight2D Light;
+	[Export] private BeastStealthMode beastStealthMode;
 
 	[Export] public float MoveSpeed { get; set; } = 200.0f;
 	[Export] public float JumpForce { get; set; } = 400.0f;
 	[Export] public float Gravity { get; set; } = 900.0f;
 	[Export] private Sprite2D CarriedObjectSprite;
+	[Signal] public delegate void PlayerIsLitEventHandler();
 	private AnimatedSprite2D animatedSprite;
+	
+	private bool canControl = true;
 	
 	public bool IsCarryingObject => CarriedObjectSprite.Visible && CarriedObjectSprite != null;
 	
@@ -17,10 +21,15 @@ public partial class Player : CharacterBody2D
 		GameManagerScript.Instance.SetPlayer(this);
 		animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		animatedSprite.Play("idle");
+		ToggleControl(true);
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (!canControl)
+		{
+			return;
+		}
 		Vector2 velocity = Velocity;
 
 		if (!IsOnFloor())
@@ -40,6 +49,10 @@ public partial class Player : CharacterBody2D
 	
 	public override void _Process(double delta)
 	{
+		if (!canControl)
+		{
+			return;
+		}
 		if (Velocity.X > 0)
 		{
 			animatedSprite.FlipH = false;
@@ -60,12 +73,24 @@ public partial class Player : CharacterBody2D
 			DisableCarriedObjectSprite();
 		}
 		
-		bool lit = IsPlayerLit();
+		bool lit = beastStealthMode.IsRouteActive && IsPlayerLit();
 
 		if (lit)
 		{
+			ToggleControl(false);
+			EmitSignalPlayerIsLit();
 			GD.Print("Player lit");
 		}
+	}
+
+	public void ToggleControl(bool value)
+	{
+		if (!value)
+		{
+			Velocity = Vector2.Zero;
+			animatedSprite.Play("idle");
+		}
+		canControl = value;
 	}
 
 	public void SetCarriedObjectSprite(Texture2D carriedObject)

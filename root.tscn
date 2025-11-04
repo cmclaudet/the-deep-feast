@@ -32,9 +32,9 @@ size = Vector2(49, 80.5)
 
 [node name="Root" type="Node2D" node_paths=PackedStringArray("BeastStealthMode", "Beast")]
 script = ExtResource("1_huihk")
+StartRound = 3
 BeastStealthMode = NodePath("BeastStealthMode")
 Beast = NodePath("FishTanks/BeastTank/Fish")
-testStealthMode = true
 metadata/_edit_group_ = true
 
 [node name="Background" type="ColorRect" parent="."]
@@ -65,10 +65,11 @@ unlockedPosition = Vector2(749, -175)
 position = Vector2(77, 141)
 shape = SubResource("RectangleShape2D_vyht1")
 
-[node name="Player" parent="." node_paths=PackedStringArray("Light") instance=ExtResource("1_pq8q7")]
+[node name="Player" parent="." node_paths=PackedStringArray("Light", "beastStealthMode") instance=ExtResource("1_pq8q7")]
 z_index = 2
 position = Vector2(-697, -89)
 Light = NodePath("../BeastStealthMode/PointLight2D")
+beastStealthMode = NodePath("../BeastStealthMode")
 MoveSpeed = 600.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -323,6 +324,7 @@ scale_amount_max = 0.6
 [node name="BeastStealthMode" parent="." node_paths=PackedStringArray("route") instance=ExtResource("10_gd4vy")]
 position = Vector2(83, -642)
 route = NodePath("../BeastRoute")
+speed = 200.0
 
 [node name="PointLight2D" parent="BeastStealthMode" index="1"]
 rotation = 0.7592182
@@ -341,6 +343,8 @@ position = Vector2(-413, -35)
 [node name="Obstacle2" parent="Obstacles" instance=ExtResource("18_blcw0")]
 offset_left = 335.0
 offset_right = 487.0
+
+[connection signal="PlayerIsLit" from="Player" to="BeastStealthMode" method="OnPlayerIsLit"]
 
 [editable path="FishTanks/FishTank"]
 [editable path="FishTanks/FishTank2"]

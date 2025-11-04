@@ -74,7 +74,7 @@ public partial class GameManagerScript : Node
 		else if (GameStateScript.Instance.IsAllFishFed())
 		{
 			exit.SetUnlocked();
-			if (beastStealthMode.IsRouteActive)
+			if (beastStealthMode is { IsRouteActive: true })
 			{
 				beastStealthMode.StopRoute();
 			}
@@ -99,10 +99,12 @@ public partial class GameManagerScript : Node
 	private async Task ReloadTask()
 	{
 		GD.Print("Reloading");
+		fishTanks = [];
 
 		await FadeOut.DoFadeOut();
 		
 		GetTree().ReloadCurrentScene();
+
 		await FadeOut.DoFadeIn();
 	}
 }

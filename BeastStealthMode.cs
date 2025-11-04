@@ -5,26 +5,43 @@ using Godot;
 public partial class BeastStealthMode : Node2D
 {
 	[Export] private Light2D light;
-	[Export] private BeastRoute route;
 	[Export] private float speed;
 	private int waypointIndex;
 	private BeastWaypoint activeWaypoint;
 	private bool shouldMoveToWaypoint;
 	private bool shouldKillPlayer;
 	private bool isReloading;
+	private BeastRoute activeRoute;
 	public bool IsRouteActive { get; private set; }
 	
 	private double timeSinceWaypoint;
 	
 	private float angleDiff;
 	private float scaleDiff;
+	private bool startHide;
+	private double timeSinceStartHide;
 
-	public void StartRoute()
+	public void StartRoute(BeastRoute route)
 	{
+		activeRoute = route;
 		waypointIndex = 0;
 		SetActiveWaypoint(route.waypoints[waypointIndex], setScaleAndAngleImmediate: true);
 		IsRouteActive = true;
 		GameManagerScript.Instance.SetBeastStealthMode(this);
+	}
+
+	public override void _Process(double delta)
+	{
+		if (startHide)
+		{
+			timeSinceStartHide += delta;
+			if (timeSinceStartHide > 5)
+			{
+				timeSinceStartHide = 0;
+				Hide();
+				startHide = false;
+			}
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -70,8 +87,8 @@ public partial class BeastStealthMode : Node2D
 			if (timeSinceWaypoint >= activeWaypoint.duration)
 			{
 				timeSinceWaypoint = 0;
-				waypointIndex = (waypointIndex + 1) % route.waypoints.Length;
-				SetActiveWaypoint(route.waypoints[waypointIndex]);
+				waypointIndex = (waypointIndex + 1) % activeRoute.waypoints.Length;
+				SetActiveWaypoint(activeRoute.waypoints[waypointIndex]);
 			}
 		}
 	}
@@ -80,7 +97,7 @@ public partial class BeastStealthMode : Node2D
 	{
 		IsRouteActive = false;
 		light.Hide();
-		Task.Delay(TimeSpan.FromSeconds(5)).ContinueWith(_ => Hide());
+		startHide = true;
 	}
 
 	public void OnPlayerIsLit()

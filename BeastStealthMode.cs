@@ -16,11 +16,13 @@ public partial class BeastStealthMode : Node2D
 	
 	private double timeSinceWaypoint;
 	
+	private float angleDiff;
+	private float scaleDiff;
+
 	public void StartRoute()
 	{
 		waypointIndex = 0;
-		activeWaypoint = route.waypoints[waypointIndex];
-		shouldMoveToWaypoint = true;
+		SetActiveWaypoint(route.waypoints[waypointIndex], setScaleAndAngleImmediate: true);
 		IsRouteActive = true;
 		GameManagerScript.Instance.SetBeastStealthMode(this);
 	}
@@ -44,17 +46,21 @@ public partial class BeastStealthMode : Node2D
 		}
 		else if (shouldMoveToWaypoint)
 		{
-			var direction = activeWaypoint.GlobalPosition - light.GlobalPosition;
-			var angleGoal = -direction.AngleTo(new Vector2(0, 1));
-			var lightAngleDiff = angleGoal - light.Rotation;
+			var displacement = activeWaypoint.GlobalPosition - light.GlobalPosition;
+			var angleGoal = -displacement.AngleTo(new Vector2(0, 1));
+			
+			var angleIncrement = angleDiff * (delta / activeWaypoint.lightMoveDuration);
+			var scaleIncrement = scaleDiff * delta / activeWaypoint.lightMoveDuration ;
 
-			if (Mathf.Abs(lightAngleDiff) > 0.05)
+			if (Mathf.Abs(angleGoal - light.Rotation) > 0.02)
 			{
-				light.Rotation += (lightAngleDiff < 0 ? -1 : 1) * (float)route.lightMoveSpeed * (float)delta;
+				light.Rotation += (float)angleIncrement;
+				light.Scale = new Vector2(light.Scale.X + (float)scaleIncrement, light.Scale.Y);
 			}
 			else
 			{
 				light.Rotation = angleGoal;
+				light.Scale = new Vector2(activeWaypoint.coneScale, light.Scale.Y);
 				shouldMoveToWaypoint = false;
 			}
 		} 
@@ -65,8 +71,7 @@ public partial class BeastStealthMode : Node2D
 			{
 				timeSinceWaypoint = 0;
 				waypointIndex = (waypointIndex + 1) % route.waypoints.Length;
-				activeWaypoint = route.waypoints[waypointIndex];
-				shouldMoveToWaypoint = true;
+				SetActiveWaypoint(route.waypoints[waypointIndex]);
 			}
 		}
 	}
@@ -84,5 +89,30 @@ public partial class BeastStealthMode : Node2D
 		shouldMoveToWaypoint = false;
 		activeWaypoint = null;
 		shouldKillPlayer = true;
+	}
+
+	private void SetActiveWaypoint(BeastWaypoint waypoint, bool setScaleAndAngleImmediate = false)
+	{
+		activeWaypoint = waypoint;
+		shouldMoveToWaypoint = true;
+		var startAngle = light.Rotation;
+		var startScale = light.Scale.X;
+		
+		var displacement = activeWaypoint.GlobalPosition - light.GlobalPosition;
+		var angleGoal = -displacement.AngleTo(new Vector2(0, 1));
+
+		var coneScaleGoal = activeWaypoint.coneScale;
+		if (setScaleAndAngleImmediate)
+		{
+			light.Scale = new Vector2(coneScaleGoal, light.Scale.Y);
+			scaleDiff = 0;
+			light.Rotation = angleGoal;
+			angleDiff = 0;
+		}
+		else
+		{
+			scaleDiff = coneScaleGoal - startScale;
+			angleDiff = angleGoal - startAngle;
+		}
 	}
 }

@@ -2,6 +2,8 @@ using Godot;
 
 public partial class Player : CharacterBody2D
 {
+	[Export] public PointLight2D Light;
+
 	[Export] public float MoveSpeed { get; set; } = 200.0f;
 	[Export] public float JumpForce { get; set; } = 400.0f;
 	[Export] public float Gravity { get; set; } = 900.0f;
@@ -57,6 +59,13 @@ public partial class Player : CharacterBody2D
 		{
 			DisableCarriedObjectSprite();
 		}
+		
+		bool lit = IsPlayerLit();
+
+		if (lit)
+		{
+			GD.Print("Player lit");
+		}
 	}
 
 	public void SetCarriedObjectSprite(Texture2D carriedObject)
@@ -69,5 +78,32 @@ public partial class Player : CharacterBody2D
 	{
 		CarriedObjectSprite.Texture = null;
 		CarriedObjectSprite.Hide();
+	}
+	
+	private bool IsPlayerLit()
+	{
+		if (Light == null)
+			return false;
+		
+		Vector2 lightSize = Light.Texture.GetSize() * Light.Scale;
+		var playerToLight = GlobalPosition - Light.GlobalPosition;
+		var playerToLightAngle = -playerToLight.AngleTo(new Vector2(0, 1));
+		
+		var lightConeAngle = Mathf.Atan(lightSize.X / (2 * lightSize.Y));
+
+		var withinMinAngleRange = playerToLightAngle >  Light.Rotation - lightConeAngle;
+		var withinMaxAngleRange = playerToLightAngle < Light.Rotation + lightConeAngle;
+
+		if (withinMinAngleRange && withinMaxAngleRange)
+		{
+			var spaceState = GetWorld2D().DirectSpaceState;
+			var query = PhysicsRayQueryParameters2D.Create(Light.GlobalPosition, GlobalPosition);
+			query.CollisionMask = 1 << 1;
+
+			var result = spaceState.IntersectRay(query);
+			
+			return result.Count == 0;
+		}
+		return false;
 	}
 }

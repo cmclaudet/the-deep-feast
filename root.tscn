@@ -61,7 +61,6 @@ size = Vector2(96, 128)
 
 [node name="Root" type="Node2D" node_paths=PackedStringArray("BeastStealthMode", "Beast", "RoundData", "RoundLabelDebug")]
 script = ExtResource("1_huihk")
-StartRound = 3
 BeastStealthMode = NodePath("BeastStealthMode")
 Beast = NodePath("FishTanks/BeastTank/Fish")
 RoundData = [NodePath("StealthRoute1"), NodePath("StealthRound2")]

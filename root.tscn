@@ -33,31 +33,31 @@ size = Vector2(49, 80.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jnlp7"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_50g4q"]
-polygon = PackedVector2Array(147, 0, -3.81, 0, 0, -208, 148, -208)
+polygon = PackedVector2Array(-96.5, -123.5, 96.5, -123.5, 96.5, 123.5, -96.5, 123.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dlgs"]
-size = Vector2(151, 210)
+size = Vector2(193, 247)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vte5o"]
-polygon = PackedVector2Array(124, 0, -3.81, 0, 0, -130, 124, -129)
+polygon = PackedVector2Array(-64, -77.5, 64, -77.5, 64, 77.5, -64, 77.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_po8fv"]
-size = Vector2(123, 134)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ab83r"]
+size = Vector2(128, 155)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3dlgs"]
-polygon = PackedVector2Array(129, 2, -3.81, 1, 0, -208, 130, -207)
+polygon = PackedVector2Array(-65.5, -102, 65.5, -102, 65.5, 102, -65.5, 102)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vte5o"]
-size = Vector2(130, 209)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_po8fv"]
+size = Vector2(131, 204)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_po8fv"]
-polygon = PackedVector2Array(94, -83, -3.81, -82, 0, -208, 95, -207)
+polygon = PackedVector2Array(-48, -64, 48, -64, 48, 64, -48, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ub8w1"]
-size = Vector2(90.3125, 119.5)
+size = Vector2(96, 126)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_50g4q"]
-size = Vector2(90.3125, 119.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ynlg5"]
+size = Vector2(96, 128)
 
 [node name="Root" type="Node2D" node_paths=PackedStringArray("BeastStealthMode", "Beast", "RoundData", "RoundLabelDebug")]
 script = ExtResource("1_huihk")
@@ -378,36 +378,35 @@ position = Vector2(148, -31)
 [node name="Obstacles" type="Node2D" parent="StealthRoute1"]
 
 [node name="Obstacle" parent="StealthRoute1/Obstacles" instance=ExtResource("18_blcw0")]
-offset_left = -195.0
-offset_top = -211.0
-offset_right = -44.0
-offset_bottom = -2.0
+offset_left = -167.0
+offset_top = -256.0
+offset_right = 26.0
+offset_bottom = -9.0
 
 [node name="LightOccluder2D" parent="StealthRoute1/Obstacles/Obstacle" index="0"]
+position = Vector2(96.5, 123.5)
 occluder = SubResource("OccluderPolygon2D_50g4q")
 
 [node name="CollisionShape2D" parent="StealthRoute1/Obstacles/Obstacle/OccluderStaticBody2D" index="0"]
-position = Vector2(75.5, 105)
+position = Vector2(96.5, 123.5)
 shape = SubResource("RectangleShape2D_3dlgs")
 
 [node name="Obstacle2" parent="StealthRoute1/Obstacles" instance=ExtResource("18_blcw0")]
 offset_left = 335.0
-offset_top = -133.0
-offset_right = 462.0
-offset_bottom = 3.0
+offset_top = -159.0
+offset_right = 463.0
+offset_bottom = -4.0
 
 [node name="LightOccluder2D" parent="StealthRoute1/Obstacles/Obstacle2" index="0"]
-position = Vector2(1.8099976, 129)
+position = Vector2(64, 77.5)
 occluder = SubResource("OccluderPolygon2D_vte5o")
 
-[node name="OccluderStaticBody2D" parent="StealthRoute1/Obstacles/Obstacle2" index="1"]
-position = Vector2(-0.19000244, -64)
-
 [node name="CollisionShape2D" parent="StealthRoute1/Obstacles/Obstacle2/OccluderStaticBody2D" index="0"]
-position = Vector2(61.190002, 132)
-shape = SubResource("RectangleShape2D_po8fv")
+position = Vector2(64, 77.5)
+shape = SubResource("RectangleShape2D_ab83r")
 
 [node name="StealthRound2" type="Node2D" parent="." node_paths=PackedStringArray("Route", "Obstacles")]
+visible = false
 script = ExtResource("17_50g4q")
 Route = NodePath("BeastRoute")
 Obstacles = NodePath("Obstacles")
@@ -428,37 +427,41 @@ position = Vector2(240, -28)
 [node name="Obstacles" type="Node2D" parent="StealthRound2"]
 
 [node name="Obstacle" parent="StealthRound2/Obstacles" instance=ExtResource("18_blcw0")]
+offset_top = -196.0
 
 [node name="LightOccluder2D" parent="StealthRound2/Obstacles/Obstacle" index="0"]
+position = Vector2(65.5, 102)
 occluder = SubResource("OccluderPolygon2D_3dlgs")
 
 [node name="CollisionShape2D" parent="StealthRound2/Obstacles/Obstacle/OccluderStaticBody2D" index="0"]
-position = Vector2(65, 103.5)
-shape = SubResource("RectangleShape2D_vte5o")
+position = Vector2(65.5, 102)
+shape = SubResource("RectangleShape2D_po8fv")
 
 [node name="Obstacle2" parent="StealthRound2/Obstacles" instance=ExtResource("18_blcw0")]
 offset_left = 102.0
-offset_top = -117.0
+offset_top = -118.0
 offset_right = 198.0
 
 [node name="LightOccluder2D" parent="StealthRound2/Obstacles/Obstacle2" index="0"]
+position = Vector2(48, 63)
 occluder = SubResource("OccluderPolygon2D_po8fv")
 
 [node name="CollisionShape2D" parent="StealthRound2/Obstacles/Obstacle2/OccluderStaticBody2D" index="0"]
-position = Vector2(47.84375, 62.25)
+position = Vector2(48, 63)
 shape = SubResource("RectangleShape2D_ub8w1")
 
 [node name="Obstacle3" parent="StealthRound2/Obstacles" instance=ExtResource("18_blcw0")]
 offset_left = 282.0
-offset_top = -117.0
+offset_top = -120.0
 offset_right = 378.0
 
 [node name="LightOccluder2D" parent="StealthRound2/Obstacles/Obstacle3" index="0"]
+position = Vector2(48, 64)
 occluder = SubResource("OccluderPolygon2D_po8fv")
 
 [node name="CollisionShape2D" parent="StealthRound2/Obstacles/Obstacle3/OccluderStaticBody2D" index="0"]
-position = Vector2(47.84375, 62.25)
-shape = SubResource("RectangleShape2D_50g4q")
+position = Vector2(48, 64)
+shape = SubResource("RectangleShape2D_ynlg5")
 
 [node name="RoundDebugLabel" type="Label" parent="."]
 offset_left = -1631.0

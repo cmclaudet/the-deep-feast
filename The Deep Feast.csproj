@@ -5,4 +5,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>TheDeepFeast</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="addons\obstacle_collision_sync\plugin.cfg" />
+  </ItemGroup>
 </Project>

@@ -19,6 +19,8 @@ color = Color(0.24881959, 0.24881959, 0.24881959, 1)
 script = ExtResource("1_16kwr")
 LightOccluder = NodePath("LightOccluder2D")
 CollisionShape = NodePath("OccluderStaticBody2D/CollisionShape2D")
+LightOccluderPath = NodePath("LightOccluder2D")
+CollisionShapePath = NodePath("OccluderStaticBody2D/CollisionShape2D")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 position = Vector2(2, 207)

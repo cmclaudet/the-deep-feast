@@ -9,11 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://xjolg3howhs1" path="res://Art/Tiles/sidewall.png" id="5_r3r3k"]
 [ext_resource type="PackedScene" uid="uid://poumb1rm7n8k" path="res://Components/prompt.tscn" id="6_l8v81"]
 [ext_resource type="PackedScene" uid="uid://dorax4r82p8aj" path="res://Components/fish_tank.tscn" id="8_bf3um"]
-[ext_resource type="PackedScene" uid="uid://dqeu77asqcmel" path="res://Components/canvas_layer.tscn" id="8_huihk"]
+[ext_resource type="PackedScene" path="res://Components/canvas_layer.tscn" id="8_huihk"]
 [ext_resource type="Texture2D" uid="uid://c4q73mw4ut4su" path="res://Art/Environment/tank1.png" id="8_tw3kd"]
 [ext_resource type="Texture2D" uid="uid://ov2nvqdonx8s" path="res://Art/TMP/bubble_small_deepfeast.png" id="9_gd4vy"]
 [ext_resource type="Texture2D" uid="uid://dq83kh60hy3er" path="res://Art/Environment/tank2.png" id="9_tw3kd"]
-[ext_resource type="PackedScene" uid="uid://d18bwd6kkm430" path="res://Components/beast_stealth_mode.tscn" id="10_gd4vy"]
+[ext_resource type="PackedScene" path="res://Components/beast_stealth_mode.tscn" id="10_gd4vy"]
 [ext_resource type="Texture2D" uid="uid://dhf6t3gfaerlg" path="res://Art/Environment/tankbeast.png" id="11_qw60f"]
 [ext_resource type="Script" uid="uid://dwl7ervxn8txr" path="res://RoundData.cs" id="17_50g4q"]
 [ext_resource type="Texture2D" uid="uid://dxlabsq6wha7l" path="res://Art/Tiles/floor.png" id="17_blcw0"]
@@ -59,12 +59,11 @@ size = Vector2(96, 126)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ynlg5"]
 size = Vector2(96, 128)
 
-[node name="Root" type="Node2D" node_paths=PackedStringArray("BeastStealthMode", "Beast", "RoundData", "RoundLabelDebug")]
+[node name="Root" type="Node2D" node_paths=PackedStringArray("BeastStealthMode", "Beast", "RoundData")]
 script = ExtResource("1_huihk")
 BeastStealthMode = NodePath("BeastStealthMode")
 Beast = NodePath("FishTanks/BeastTank/Fish")
-RoundData = [NodePath("StealthRoute1"), NodePath("StealthRound2")]
-RoundLabelDebug = NodePath("RoundDebugLabel")
+RoundData = []
 
 [node name="Background" type="ColorRect" parent="."]
 z_index = -1
@@ -99,7 +98,6 @@ z_index = 2
 position = Vector2(-697, -89)
 Light = NodePath("../BeastStealthMode/PointLight2D")
 beastStealthMode = NodePath("../BeastStealthMode")
-MoveSpeed = 600.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(3, -75)
@@ -352,7 +350,6 @@ scale_amount_max = 0.6
 
 [node name="BeastStealthMode" parent="." instance=ExtResource("10_gd4vy")]
 position = Vector2(83, -642)
-speed = 200.0
 
 [node name="PointLight2D" parent="BeastStealthMode" index="1"]
 rotation = 0.7592182
@@ -468,8 +465,6 @@ offset_top = -835.0
 offset_right = -1572.0
 offset_bottom = -812.0
 text = "Round: "
-
-[connection signal="PlayerIsLit" from="Player" to="BeastStealthMode" method="OnPlayerIsLit"]
 
 [editable path="FishTanks/FishTank"]
 [editable path="FishTanks/FishTank2"]

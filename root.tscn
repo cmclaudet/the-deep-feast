@@ -61,8 +61,10 @@ size = Vector2(96, 128)
 
 [node name="Root" type="Node2D" node_paths=PackedStringArray("BeastStealthMode", "Beast", "RoundData", "RoundLabelDebug")]
 script = ExtResource("1_huihk")
+StartRound = 3
 BeastStealthMode = NodePath("BeastStealthMode")
 Beast = NodePath("FishTanks/BeastTank/Fish")
+testStealthMode = true
 RoundData = [NodePath("StealthRoute1"), NodePath("StealthRound2")]
 RoundLabelDebug = NodePath("RoundDebugLabel")
 
@@ -351,6 +353,7 @@ scale_amount_max = 0.6
 
 [node name="BeastStealthMode" parent="." instance=ExtResource("10_gd4vy")]
 position = Vector2(83, -642)
+speed = 250.0
 
 [node name="PointLight2D" parent="BeastStealthMode" index="1"]
 rotation = 0.7592182
@@ -466,6 +469,8 @@ offset_top = -626.0
 offset_right = -1501.0
 offset_bottom = -603.0
 text = "Round: "
+
+[connection signal="PlayerIsLit" from="Player" to="BeastStealthMode" method="OnPlayerIsLit"]
 
 [editable path="FishTanks/FishTank"]
 [editable path="FishTanks/FishTank2"]

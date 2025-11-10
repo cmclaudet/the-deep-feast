@@ -82,7 +82,6 @@ public partial class RoundController : Node2D
 	public void StartStealthMode()
 	{
 		Beast.Hide();
-		BeastStealthMode.Show();
 		BeastStealthMode.StartRoute(currentRoundData.Route);
 		isStealthMode = true;
 	}

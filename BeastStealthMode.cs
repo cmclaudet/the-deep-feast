@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using Godot;
 
@@ -6,6 +5,8 @@ public partial class BeastStealthMode : Node2D
 {
 	[Export] private Light2D light;
 	[Export] private float speed;
+	[Export] private float delayBeforeBeastHides = 5;
+	[Export] private float delayBeforeRouteStarts = 3f;
 	private int waypointIndex;
 	private BeastWaypoint activeWaypoint;
 	private bool shouldMoveToWaypoint;
@@ -21,13 +22,30 @@ public partial class BeastStealthMode : Node2D
 	private bool startHide;
 	private double timeSinceStartHide;
 
+	public override void _Ready()
+	{
+		GameManagerScript.Instance.SetBeastStealthMode(this);
+	}
+	
 	public void StartRoute(BeastRoute route)
 	{
+		GameManagerScript.Instance.Player.ToggleControl(false);
+		_ = AwaitThenStartRoute(route);
+	}
+
+	private async Task AwaitThenStartRoute(BeastRoute route)
+	{
+		light.Hide();
+		Show();
+		
+		await ToSignal(GetTree().CreateTimer(delayBeforeRouteStarts), SceneTreeTimer.SignalName.Timeout);
+		
+		GameManagerScript.Instance.Player.ToggleControl(true);
+		light.Show();
 		activeRoute = route;
 		waypointIndex = 0;
 		SetActiveWaypoint(route.waypoints[waypointIndex], setScaleAndAngleImmediate: true);
 		IsRouteActive = true;
-		GameManagerScript.Instance.SetBeastStealthMode(this);
 	}
 
 	public override void _Process(double delta)
@@ -35,7 +53,7 @@ public partial class BeastStealthMode : Node2D
 		if (startHide)
 		{
 			timeSinceStartHide += delta;
-			if (timeSinceStartHide > 5)
+			if (timeSinceStartHide > delayBeforeBeastHides)
 			{
 				timeSinceStartHide = 0;
 				Hide();

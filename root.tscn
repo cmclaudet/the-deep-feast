@@ -63,7 +63,7 @@ size = Vector2(96, 128)
 script = ExtResource("1_huihk")
 BeastStealthMode = NodePath("BeastStealthMode")
 Beast = NodePath("FishTanks/BeastTank/Fish")
-RoundData = []
+RoundData = [NodePath("StealthRoute1"), NodePath("StealthRound2")]
 RoundLabelDebug = NodePath("RoundDebugLabel")
 
 [node name="Background" type="ColorRect" parent="."]

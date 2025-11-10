@@ -65,7 +65,7 @@ StartRound = 3
 BeastStealthMode = NodePath("BeastStealthMode")
 Beast = NodePath("FishTanks/BeastTank/Fish")
 testStealthMode = true
-RoundData = [NodePath("StealthRoute1"), NodePath("StealthRound2")]
+RoundData = [NodePath("StealthRound1"), NodePath("StealthRound2")]
 RoundLabelDebug = NodePath("RoundDebugLabel")
 
 [node name="Background" type="ColorRect" parent="."]
@@ -360,48 +360,48 @@ rotation = 0.7592182
 scale = Vector2(1, 3.02)
 shadow_enabled = true
 
-[node name="StealthRoute1" type="Node2D" parent="." node_paths=PackedStringArray("Route", "Obstacles")]
+[node name="StealthRound1" type="Node2D" parent="." node_paths=PackedStringArray("Route", "Obstacles")]
 script = ExtResource("17_50g4q")
 Route = NodePath("BeastRoute")
 Obstacles = NodePath("Obstacles")
 
-[node name="BeastRoute" type="Node2D" parent="StealthRoute1" node_paths=PackedStringArray("waypoints")]
+[node name="BeastRoute" type="Node2D" parent="StealthRound1" node_paths=PackedStringArray("waypoints")]
 script = ExtResource("20_vte5o")
 waypoints = [NodePath("Waypoint"), NodePath("Waypoint2")]
 
-[node name="Waypoint" parent="StealthRoute1/BeastRoute" instance=ExtResource("21_po8fv")]
+[node name="Waypoint" parent="StealthRound1/BeastRoute" instance=ExtResource("21_po8fv")]
 position = Vector2(-413, -34)
 
-[node name="Waypoint2" parent="StealthRoute1/BeastRoute" instance=ExtResource("21_po8fv")]
+[node name="Waypoint2" parent="StealthRound1/BeastRoute" instance=ExtResource("21_po8fv")]
 position = Vector2(148, -31)
 
-[node name="Obstacles" type="Node2D" parent="StealthRoute1"]
+[node name="Obstacles" type="Node2D" parent="StealthRound1"]
 
-[node name="Obstacle" parent="StealthRoute1/Obstacles" instance=ExtResource("18_blcw0")]
+[node name="Obstacle" parent="StealthRound1/Obstacles" instance=ExtResource("18_blcw0")]
 offset_left = -167.0
 offset_top = -256.0
 offset_right = 26.0
 offset_bottom = -9.0
 
-[node name="LightOccluder2D" parent="StealthRoute1/Obstacles/Obstacle" index="0"]
+[node name="LightOccluder2D" parent="StealthRound1/Obstacles/Obstacle" index="0"]
 position = Vector2(96.5, 123.5)
 occluder = SubResource("OccluderPolygon2D_50g4q")
 
-[node name="CollisionShape2D" parent="StealthRoute1/Obstacles/Obstacle/OccluderStaticBody2D" index="0"]
+[node name="CollisionShape2D" parent="StealthRound1/Obstacles/Obstacle/OccluderStaticBody2D" index="0"]
 position = Vector2(96.5, 123.5)
 shape = SubResource("RectangleShape2D_3dlgs")
 
-[node name="Obstacle2" parent="StealthRoute1/Obstacles" instance=ExtResource("18_blcw0")]
+[node name="Obstacle2" parent="StealthRound1/Obstacles" instance=ExtResource("18_blcw0")]
 offset_left = 335.0
 offset_top = -159.0
 offset_right = 463.0
 offset_bottom = -4.0
 
-[node name="LightOccluder2D" parent="StealthRoute1/Obstacles/Obstacle2" index="0"]
+[node name="LightOccluder2D" parent="StealthRound1/Obstacles/Obstacle2" index="0"]
 position = Vector2(64, 77.5)
 occluder = SubResource("OccluderPolygon2D_vte5o")
 
-[node name="CollisionShape2D" parent="StealthRoute1/Obstacles/Obstacle2/OccluderStaticBody2D" index="0"]
+[node name="CollisionShape2D" parent="StealthRound1/Obstacles/Obstacle2/OccluderStaticBody2D" index="0"]
 position = Vector2(64, 77.5)
 shape = SubResource("RectangleShape2D_ab83r")
 
@@ -477,8 +477,8 @@ text = "Round: "
 [editable path="FishTanks/FishTank3"]
 [editable path="FishTanks/BeastTank"]
 [editable path="BeastStealthMode"]
-[editable path="StealthRoute1/Obstacles/Obstacle"]
-[editable path="StealthRoute1/Obstacles/Obstacle2"]
+[editable path="StealthRound1/Obstacles/Obstacle"]
+[editable path="StealthRound1/Obstacles/Obstacle2"]
 [editable path="StealthRound2/Obstacles/Obstacle"]
 [editable path="StealthRound2/Obstacles/Obstacle2"]
 [editable path="StealthRound2/Obstacles/Obstacle3"]

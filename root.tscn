@@ -403,7 +403,6 @@ position = Vector2(64, 77.5)
 shape = SubResource("RectangleShape2D_ab83r")
 
 [node name="StealthRound2" type="Node2D" parent="." node_paths=PackedStringArray("Route", "Obstacles")]
-visible = false
 script = ExtResource("17_50g4q")
 Route = NodePath("BeastRoute")
 Obstacles = NodePath("Obstacles")
@@ -422,6 +421,7 @@ position = Vector2(11, -31)
 position = Vector2(240, -28)
 
 [node name="Obstacles" type="Node2D" parent="StealthRound2"]
+visible = false
 
 [node name="Obstacle" parent="StealthRound2/Obstacles" instance=ExtResource("18_blcw0")]
 offset_top = -196.0
